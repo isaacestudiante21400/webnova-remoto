@@ -6,45 +6,26 @@
 
 1. Abre tu terminal y crea una nueva carpeta para esta práctica:
 
-```
-mkdir webnova-remoto
-cd webnova-remoto
-git init
-git config --global init.defaultBranch main
-```
-
 ![captura](capturas/1.png)
 
 2. Crea un archivo llamado **equipo.md** con el siguiente contenido:
 
-```
-# Equipo de Desarrollo WebNova
-- Project Manager: Ana Torres
-```
-
-[CAPTURA]
+![captura](capturas/2.png)
+![captura](capturas/3.png)
 
 3. Haz tu primer commit local:
 
-```
-git add equipo.md
-git commit -m "C1: Creación del archivo de equipo"
-```
-
-[CAPTURA]
+![captura](capturas/4.png)
 
 4. **Ve a tu cuenta de GitHub** y crea un nuevo repositorio vacío llamado **webnova-remoto** (sin README ni .gitignore).
 
-[CAPTURA]
+![captura](capturas/7.png)
 
 5. Copia la URL SSH del repositorio y vincúlalo a tu terminal:
 
-```
-git remote add origin git@github.com:TU_USUARIO/webnova-remoto.git
-git push -u origin main
-```
+![captura](capturas/6.png)
 
-[CAPTURA]
+
 
 ### Fase 2: El Compañero Virtual (Simulación en la Nube)
 
@@ -52,52 +33,34 @@ Vamos a simular que un compañero de trabajo actualiza el repositorio en **GitHu
 
 1. Sin cerrar la terminal, ve al navegador web, entra en tu repositorio de **GitHub** y abre el archivo **equipo.md**.
 
-[CAPTURA]
+![captura](capturas/8.png)
 
 2. Haz clic en el icono del **lápiz** para editarlo directamente en la web.
 3. Añade una nueva línea al final del archivo simulando el trabajo de tu compañero:
 
-```
-# Equipo de Desarrollo WebNova
-- Project Manager: Ana Torres
-- Frontend Developer: Carlos Gómez (Añadido por el compañero)
-```
-
-[CAPTURA]
+![captura](capturas/9.png)
 
 4. Haz clic en el botón verde **Commit changes...**, ponle el mensaje "C2: Añadido Frontend Developer" y confirma. *¡El repositorio remoto acaba de actualizarse!*
 
-[CAPTURA]
+![captura](capturas/10.png)
+
+
 
 ### Fase 3: Tu Trabajo Local (El Choque de Realidad)
 
 1. Vuelve a tu terminal (que ahora mismo no sabe que la nube ha cambiado). Abre el archivo **equipo.md** en tu editor local y añade tu propio cargo en la misma línea donde supuestamente lo hizo tu compañero:
 
-```
-# Equipo de Desarrollo WebNova
-- Project Manager: Ana Torres
-- Backend Developer: [Tu Nombre] (Añadido en local)
-```
-
-[CAPTURA]
+![captura](capturas/11.png)
 
 2. Haz un commit de tu trabajo en la terminal:
 
-```
-git commit -a -m "C3: Añadido Backend Developer"
-```
-
-[CAPTURA]
+![captura](capturas/12.png)
 
 3. **El Choque:** Intenta subir tu código a GitHub:
 
-```bash
-git push
-```
-
 4. **Tarea 1:** Git te bloqueará con un mensaje de error rojo. Lee atentamente la salida de la terminal. ¿Qué palabra clave usa Git para denegar la subida? ¿Qué te sugiere hacer en las líneas de **hint**:?
 
-[CAPTURA]
+![captura](capturas/13.png)
 
 La palabra clave sería rejected. Lo rechaza porque el repositorio remoto en github tiene commits que no tengo en local.
 
@@ -105,51 +68,35 @@ hint: Updates were rejected because the remote contains work that you do not hav
 
 Me está diciendo básicamente lo que acabo de explicar arriba, y que use git pull antes de pushear otra vez.
 
+
+
 ### Fase 4: El Rescate y la Resolución
 
 1. Para solucionar el problema, debes descargar el código de tu "compañero" y poner tus cambios por encima. Ejecuta:
 
-```bash
-git pull --rebase
-```
+2. Git detendrá el proceso indicando un **CONFLICTO**.
 
-2. Git detendrá el proceso indicando un ***CONFLICTO***.
+![captura](capturas/14.png)
 
-[CAPTURA]
+4. Abre **equipo.md** en tu editor de texto. Verás las marcas de conflicto (**<<<<<<< HEAD**).
 
-3. Abre **equipo.md** en tu editor de texto. Verás las marcas de conflicto (**<<<<<<< HEAD**).
-
-[CAPTURA]
+![captura](capturas/15.png)
 
 4. Borra las marcas de Git y fusiona ambas ideas para que el archivo final quede con los tres miembros del equipo:
 
-```md
-# Equipo de Desarrollo WebNova
-- Project Manager: Ana Torres
-- Frontend Developer: Carlos Gómez (Añadido por el compañero)
-- Backend Developer: [Tu Nombre] (Añadido en local)
-```
-
-[CAPTURA]
+![captura](capturas/16.png)
 
 5. Guarda el archivo, indícale a Git que lo has resuelto y continúa el proceso: 6. Bash
 
-```bash
-git add equipo.md
-git rebase --continue
-```
-
-[CAPTURA]
+![captura](capturas/17.png)
 
 7. Una vez finalizado el rescate con éxito, sube el código definitivo a GitHub:
 
-```bash
-git push
-```
-
 8. **Tarea 2:** Ve a GitHub, recarga la página y comprueba que el archivo muestra a los tres miembros del equipo y que el historial de *commits* está limpio.
 
-[CAPTURA]
+![captura](capturas/18.png)
+
+
 
 **Pregunta de reflexión:** Explica con tus palabras por qué Git bloqueó tu subida en la Fase 3 y qué ventaja tiene usar **git pull --rebase** en lugar de un simple **git pull** en estos casos.
 
